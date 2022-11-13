@@ -17,23 +17,23 @@ import {
 
   // Endpoint to filter an image from a public url
   app.get(
-    '/filteredimage',
+    '/filter-image',
     async (req: express.Request, res: express.Response) => {
       if (
         req.query &&
-        req.query.image_url &&
-        typeof req.query.image_url === 'string'
+        req.query.imageUrl &&
+        typeof req.query.imageUrl === 'string'
       ) {
-        const imageUrl: string = <string>req.query.image_url
+        const imageUrl: string = <string>req.query.imageUrl
 
         if (!isValidUrl(imageUrl)) {
-          return res.status(400).send({ error: 'image_url is invalid' })
+          return res.status(400).send({ error: 'imageUrl is invalid' })
         }
 
         if (!isValidImage(imageUrl)) {
           return res
             .status(422)
-            .send({ error: 'image_url is not a valid image' })
+            .send({ error: 'imageUrl is not a valid image' })
         }
 
         try {
@@ -44,10 +44,10 @@ import {
         } catch (error) {
           return res
             .status(422)
-            .send({ error: 'image_url could not be processed' })
+            .send({ error: 'imageUrl could not be processed' })
         }
       } else {
-        res.status(400).send({ error: 'image_url is invalid' })
+        res.status(200).send({ success: 'The API is up and running. Please provide your url as a parameter in the format: /?imageUrl=http://static.mawingu.dev.s3-website-us-east-1.amazonaws.com/images/ingredient1.jpg ' })
       }
     }
   )
@@ -55,7 +55,7 @@ import {
   // Root Endpoint
   // Displays a simple message to the user
   app.post('/', async (req, res) => {
-    res.send('try POST /filteredimage?image_url={{}}')
+    res.send('try POST /filter-image?imageUrl={{}}')
   })
 
   // Start the Server
