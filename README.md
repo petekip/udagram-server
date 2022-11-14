@@ -10,9 +10,9 @@ This is a backend application for processing images by resizing and turning them
 
 ![](originalimage.jpg)![](filteredimage.jpg)
 
-## Installation
+## Deployment
 
-### Setup
+### Setup on local environment
 
 #### First things First
 
@@ -27,13 +27,13 @@ $ git clone https://github.com/petekip/udagram-server.git
 $ cd udagram-server
 ```
 
-If you're on Debian or Ubuntu, you'll also need to install
-`nodejs-legacy`:
+Install NodeJs (Assumption if you are using a Debian based system)
+`nodejs`:
 
 Use your package manager to install `npm`.
 
 ```sh
-$ sudo apt-get install npm nodejs-legacy
+$ sudo apt-get install npm
 ```
 
 Install project dependencies:
@@ -49,7 +49,13 @@ $ npm run dev
 ```
 
 ### Deploying the application
+#### Build & produce deployment artifacts
+Build the project by running `npm run build` in your local directory. This will get the following done.
+* Transpile typescript
+* Collect and organize the source files
+* Build an archive
 
+#### Deploying the application to Elastic Beanstalk
 * Create a new application on Elastic Beanstalk: `eb init`
 * Create a new environment on Elastic Beanstalk: `eb create`
 * Deploy to Elastic Beanstalk: `eb deploy`
@@ -59,49 +65,3 @@ $ npm run dev
 - [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) - AWS deployment and scaling service used
 - [Node.js®](https://nodejs.org/) - The JavaScript runtime used
 - [Express.js®](https://nodejs.org/) - The web application framework used
-
-
-## Authors
-
-* **[Peter Koech](https://github.com/petekip)** -(https://www.github.com/petekip) - *Base concept* [Udacity Lesson 5: Building & Deploying](https://classroom.udacity.com/nanodegrees/nd9990-alg-t2/parts/cd0353)
-
-## License
-
-[![License](http://img.shields.io/:license-mit-green.svg?style=flat-square)](http://badges.mit-license.org)
-
-- This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-- Copyright 2022 © [Peter Koech](https://github.com/petekip).
-
-
-
-
-## 🚀 About Me
-I'm a full stack developer...
-
-
-## API Reference
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
