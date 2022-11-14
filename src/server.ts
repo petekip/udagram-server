@@ -47,13 +47,18 @@ import {
             .send({ error: 'imageUrl could not be processed' })
         }
       } else {
-        res.status(200).send({ success: 'The API is up and running. Please provide your url as a parameter in the format: /?imageUrl=http://static.mawingu.dev.s3-website-us-east-1.amazonaws.com/images/ingredient1.jpg ' })
+        res.status(400).send({ error: 'Please provide your url as a parameter in the format: /?imageUrl=http://static.mawingu.dev.s3-website-us-east-1.amazonaws.com/images/ingredient1.jpg ' })
       }
     }
   )
+  
+  //Healthcheck enpoint for AWS Beanstalk requests
+  app.get('/health-check', (req, res) => {
+    res.status(200)
+    res.send({success:'The app is up and running -- heath checks'})
+  })
 
   // Root Endpoint
-  // Displays a simple message to the user
   app.post('/', async (req, res) => {
     res.send('try POST /filter-image?imageUrl={{}}')
   })
